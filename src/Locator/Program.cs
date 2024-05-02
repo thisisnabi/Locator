@@ -1,10 +1,12 @@
+using Locator;
 using Locator.Common;
 using Locator.Common.Persistence;
 using Locator.Features.IpLocation;
+using Locator.Features.IpLocation.Consumers;
 using Locator.Features.IpLocation.Providers.IPGeoLocation;
-using Microsoft.AspNetCore.Mvc;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,11 +26,30 @@ builder.Services.AddDbContext<LocatorDbContext>(options =>
                        settings.MongoDbSetting.DatabaseName);
 });
 
-builder.Services.AddHttpClient<IGeoLocationApi, IPGeolocationProvider>(options => {
+builder.Services.AddHttpClient<IGeoLocationApi, IPGeolocationProvider>(options =>
+{
     options.BaseAddress = new Uri(settings.Features.IpLocation.IPGeolocationProviderBaseUrl);
 }).SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
 
+builder.Services.AddMassTransit(options =>
+{
+    options.AddConsumers(typeof(IAssemblyMarker).Assembly);
+
+    options.UsingRabbitMq((context, cfg) => {
+        cfg.UseRawJsonDeserializer();
+
+        cfg.Host(settings.RabbitMqConfigurations.Host,
+            hostConfig =>
+            {
+                hostConfig.Username(settings.RabbitMqConfigurations.Username);
+                hostConfig.Password(settings.RabbitMqConfigurations.Password);
+            });
+
+        cfg.ConfigureEndpoints(context);
+    });
+
+}); 
 
 var app = builder.Build();
 
@@ -37,7 +58,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
- 
+
 app.UseHttpsRedirection();
 
 app.MapIpLocationFeatureEndpoints();
