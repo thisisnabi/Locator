@@ -5,7 +5,7 @@ Locator is a versatile and efficient service designed to provide real-time locat
 ## Features
 
 - IpLocation
-- User-Agent
+- TimeZone
 
 ## Technologies Used
 
