@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 namespace Locator.Features.IpLocation.Providers.IPGeoLocation;
 
 public class IPGeolocationProvider(IOptions<AppSettings> options,
-                                   HttpClient httpClient) : IGeoLocationApi
+                                   HttpClient httpClient) : IGeoTimeZoneApi
 {
     private readonly IpLocationSettings _locationSettings = options.Value.Features.IpLocation;
 

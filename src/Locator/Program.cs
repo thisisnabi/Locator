@@ -2,8 +2,8 @@ using Locator;
 using Locator.Common;
 using Locator.Common.Persistence;
 using Locator.Features.IpLocation;
-using Locator.Features.IpLocation.Consumers;
 using Locator.Features.IpLocation.Providers.IPGeoLocation;
+using Locator.Features.TimeZone;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<LocationService>();
+builder.Services.AddScoped<TimeZoneService>();
 
 
 builder.Services.Configure<AppSettings>(builder.Configuration);
@@ -36,7 +37,8 @@ builder.Services.AddMassTransit(options =>
 {
     options.AddConsumers(typeof(IAssemblyMarker).Assembly);
 
-    options.UsingRabbitMq((context, cfg) => {
+    options.UsingRabbitMq((context, cfg) =>
+    {
         cfg.UseRawJsonDeserializer();
 
         cfg.Host(settings.RabbitMqConfigurations.Host,
@@ -49,7 +51,7 @@ builder.Services.AddMassTransit(options =>
         cfg.ConfigureEndpoints(context);
     });
 
-}); 
+});
 
 var app = builder.Build();
 
