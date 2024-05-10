@@ -1,6 +1,6 @@
 # Locator Service
 
-Locator is a versatile and efficient service designed to provide real-time location information based on user IP addresses.
+The User Locator Service streamlines the process of finding a user's address information within your web applications. It eliminates the need for complex IP address manipulation and leverages the power of Geolocation providers.
 
 ## Features
 
@@ -29,7 +29,12 @@ If you find this project helpful or interesting, please consider giving it a sta
 
 ## Getting Started
 
-> Coming soon
+
+### IP Address
+device connected to a network that uses the Internet Protocol (IP) for communication. It acts like a digital mailing address, allowing information to be sent and received between devices on the internet.
+![image](https://github.com/thisisnabi/Locator/assets/3371886/12dc810b-7719-4538-a9a0-a0357b9e689a)
+
+ 
 
 ## License
 This project is licensed under the MIT License: [MIT License](https://opensource.org/licenses/MIT).
