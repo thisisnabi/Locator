@@ -60,6 +60,7 @@ If your application architecture is based on microservices, it is better to deve
 Duplicate requests are always there, in order not to send a duplicate request to the Geolocation provider every time, it is better to cache your requests.
 
 
+![image](https://github.com/thisisnabi/Locator/assets/3371886/72cc83a1-3f16-4a1b-80c5-03db77bd08de)
 
 
 
