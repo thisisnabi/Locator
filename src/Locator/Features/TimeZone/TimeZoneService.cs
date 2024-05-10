@@ -8,7 +8,7 @@ public class TimeZoneService(LocatorDbContext _dbContext,
                              IGeoTimeZoneApi _geoLocationApi)
 {
 
-    public async Task<TimeZoneResponse> GetLocatinByIP(string ip, CancellationToken cancellationToken)
+    public async Task<TimeZoneResponse> GetTimeZoneByIP(string ip, CancellationToken cancellationToken)
     {
         var zone = await _dbContext.Zones
                                    .FirstOrDefaultAsync(x => x.IP == ip, cancellationToken);

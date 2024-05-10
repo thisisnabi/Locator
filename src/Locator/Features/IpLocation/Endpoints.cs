@@ -8,7 +8,8 @@ public static class Endpoints
 {
     public static IEndpointRouteBuilder MapIpLocationFeatureEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        var endpointGroup = endpoints.MapGroup("/locations");
+        var endpointGroup = endpoints.MapGroup("/locations")
+                                     .WithTags("location");
 
         endpointGroup.MapGet("/{ip_address:required}",
                         (LocationService locationService,
@@ -25,13 +26,6 @@ public static class Endpoints
                 {
                     return locationService.GetLocationDetailsByIp(IpAddress, cancellationToken);
                 });
-
-
-        endpoints.MapPost("notify", (IPublishEndpoint publisher) =>
-        {
-            publisher.Publish(new GetIpLocationMessage("192.12.11.23"));
-
-        });
 
         return endpoints;
     }

@@ -4,6 +4,7 @@ using Locator.Common.Persistence;
 using Locator.Features.IpLocation;
 using Locator.Features.IpLocation.Providers.IPGeoLocation;
 using Locator.Features.TimeZone;
+using Locator.Features.TimeZone.Providers.IPGeoTimeZone;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +33,10 @@ builder.Services.AddHttpClient<IGeoLocationApi, IPGeolocationProvider>(options =
     options.BaseAddress = new Uri(settings.Features.IpLocation.IPGeolocationProviderBaseUrl);
 }).SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
+builder.Services.AddHttpClient<IGeoTimeZoneApi, IPGeoTimeZoneProvider>(options =>
+{
+    options.BaseAddress = new Uri(settings.Features.TimeZone.IPGeoTimeZoneProviderBaseUrl);
+}).SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
 builder.Services.AddMassTransit(options =>
 {
@@ -64,5 +69,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapIpLocationFeatureEndpoints();
+app.MapTimeZoneFeatureEndpoints();
 
 app.Run();
