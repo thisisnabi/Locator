@@ -1,23 +1,24 @@
 ﻿using Locator.Common.Persistence;
 using Locator.Features.IpLocation.Domain;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Locator.Features.IpLocation;
 
 public class LocationService(LocatorDbContext _dbContext, 
                              IGeoLocationApi _geoLocationApi)
 {
-    public async Task<LocationResponse> GetLocatinByIP(string ip, CancellationToken cancellationToken)
+    public async Task<LocationResponse> GetLocatinByIP(IPAddress ip, CancellationToken cancellationToken)
     {
-        var location = await _dbContext.Locations
-                                       .FirstOrDefaultAsync(x => x.IP == ip, cancellationToken);
+        //var location = await _dbContext.Locations
+        //                               .FirstOrDefaultAsync(x => x.IP == ip.ToString(), cancellationToken);
 
-        if (location is not null)
-        {
-            return (LocationResponse)location;
-        }
+        //if (location is not null)
+        //{
+        //    return (LocationResponse)location;
+        //}
 
-        var newLocation = await FetchLocationFromApi(ip, cancellationToken);
+        var newLocation = await FetchLocationFromApi(ip.ToString(), cancellationToken);
         return (LocationResponse)newLocation;
     }
      
@@ -48,8 +49,8 @@ public class LocationService(LocatorDbContext _dbContext,
             Longitude = responseLocation.Longitude
         };
 
-        await _dbContext.Locations.AddAsync(newLocation, cancellationToken);
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        //await _dbContext.Locations.AddAsync(newLocation, cancellationToken);
+        //await _dbContext.SaveChangesAsync(cancellationToken);
         return newLocation;
     }
 

@@ -72,3 +72,5 @@ app.MapIpLocationFeatureEndpoints();
 app.MapTimeZoneFeatureEndpoints();
 
 app.Run();
+
+public partial class Program { }

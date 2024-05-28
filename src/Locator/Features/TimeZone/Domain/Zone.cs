@@ -6,7 +6,7 @@ namespace Locator.Features.TimeZone.Domain;
 [Collection("zones")]
 public class Zone
 {
-    public ObjectId MyProperty { get; set; }
+    public ObjectId Id { get; set; }
 
     public string TimeZone { get; set; } = null!;
 

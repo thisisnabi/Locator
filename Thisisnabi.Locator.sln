@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locator.UnitTests", "tests\Locator.UnitTests\Locator.UnitTests.csproj", "{59B27C12-97C7-4FEA-8437-BA420C4CD5D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locator.UnitTests", "tests\Locator.UnitTests\Locator.UnitTests.csproj", "{59B27C12-97C7-4FEA-8437-BA420C4CD5D9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{44C20E83-D93C-45AA-8CB1-3A583A21274D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DC33BEF4-3827-463B-89EB-0C3A28D61ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locator", "src\Locator\Locator.csproj", "{E5245FED-F46B-486B-A60F-78BF15F18737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locator", "src\Locator\Locator.csproj", "{E5245FED-F46B-486B-A60F-78BF15F18737}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locator.FunctionalTestings", "tests\Locator.FunctionalTestings\Locator.FunctionalTestings.csproj", "{D3AC1EF4-4F08-4993-A5A2-B4CF883B85FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{E5245FED-F46B-486B-A60F-78BF15F18737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5245FED-F46B-486B-A60F-78BF15F18737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5245FED-F46B-486B-A60F-78BF15F18737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3AC1EF4-4F08-4993-A5A2-B4CF883B85FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3AC1EF4-4F08-4993-A5A2-B4CF883B85FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3AC1EF4-4F08-4993-A5A2-B4CF883B85FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3AC1EF4-4F08-4993-A5A2-B4CF883B85FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +38,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{59B27C12-97C7-4FEA-8437-BA420C4CD5D9} = {44C20E83-D93C-45AA-8CB1-3A583A21274D}
 		{E5245FED-F46B-486B-A60F-78BF15F18737} = {DC33BEF4-3827-463B-89EB-0C3A28D61ACD}
+		{D3AC1EF4-4F08-4993-A5A2-B4CF883B85FF} = {44C20E83-D93C-45AA-8CB1-3A583A21274D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8A6E4B3-B600-45A9-96A3-82FF9ED16DAF}
 	EndGlobalSection
 EndGlobal

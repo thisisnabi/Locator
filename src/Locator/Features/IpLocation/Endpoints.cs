@@ -1,6 +1,5 @@
-﻿using Locator.Features.IpLocation.Consumers;
-using MassTransit;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Locator.Features.IpLocation;
 
@@ -16,7 +15,12 @@ public static class Endpoints
                          [FromRoute(Name = "ip_address")] string IpAddress,
                          CancellationToken cancellationToken) =>
                         {
-                            return locationService.GetLocatinByIP(IpAddress, cancellationToken);
+                            if (!IPAddress.TryParse(IpAddress, out IPAddress? address))
+                            {
+                                return Results.BadRequest("Invalid Ip Address.");
+                            }
+
+                            return Results.Ok(locationService.GetLocatinByIP(address, cancellationToken));
                         });
 
         endpointGroup.MapGet("/{ip_address:required}/details",
