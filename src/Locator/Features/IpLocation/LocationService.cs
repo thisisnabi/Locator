@@ -10,13 +10,13 @@ public class LocationService(LocatorDbContext _dbContext,
 {
     public async Task<LocationResponse> GetLocatinByIP(IPAddress ip, CancellationToken cancellationToken)
     {
-        //var location = await _dbContext.Locations
-        //                               .FirstOrDefaultAsync(x => x.IP == ip.ToString(), cancellationToken);
+        var location = await _dbContext.Locations
+                                       .FirstOrDefaultAsync(x => x.IP == ip.ToString(), cancellationToken);
 
-        //if (location is not null)
-        //{
-        //    return (LocationResponse)location;
-        //}
+        if (location is not null)
+        {
+            return (LocationResponse)location;
+        }
 
         var newLocation = await FetchLocationFromApi(ip.ToString(), cancellationToken);
         return (LocationResponse)newLocation;
@@ -49,8 +49,8 @@ public class LocationService(LocatorDbContext _dbContext,
             Longitude = responseLocation.Longitude
         };
 
-        //await _dbContext.Locations.AddAsync(newLocation, cancellationToken);
-        //await _dbContext.SaveChangesAsync(cancellationToken);
+        await _dbContext.Locations.AddAsync(newLocation, cancellationToken);
+        await _dbContext.SaveChangesAsync(cancellationToken);
         return newLocation;
     }
 
